@@ -1,20 +1,18 @@
-import graph.Drawable
+import graph.Graph
 import graph.Trochoid
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.image.BufferedImage
 import java.util.*
 import javax.swing.JPanel
-import javax.swing.SwingUtilities
 
 class MainPanel: JPanel() {
 
     private val canvas: BufferedImage = BufferedImage(500, 500, BufferedImage.TYPE_4BYTE_ABGR)
 
-    private val drawableList = arrayListOf<Drawable>()
+    private val drawableList = arrayListOf<Graph>()
 
     init{
-//        println("MainPanel Initialized")
         val g2 = canvas.createGraphics()
         g2.color = Color.BLACK
         g2.fillRect(0, 0, 500, 500)
@@ -24,13 +22,8 @@ class MainPanel: JPanel() {
                 val num = stdIn.nextInt()
                 println(num)
 
-                drawableList.add(Trochoid(49, 199, 30))
-
-                for(drawable in drawableList) {
-                    drawable.draw(canvas.createGraphics())
-                }
-                SwingUtilities.invokeLater {
-                    this.repaint()
+                synchronized(drawableList) {
+                    drawableList.add(Trochoid(50, 190, 30, 0.1, 80, 0.1))
                 }
             }
         }.start()
@@ -38,7 +31,20 @@ class MainPanel: JPanel() {
 
     override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
+        val g2 = canvas.createGraphics()
+        g2.color = Color.BLACK
+        g2.fillRect(0, 0, 500, 500)
+
+        synchronized(drawableList) {
+            for(drawable in drawableList) {
+                drawable.draw(g2)
+                drawable.update()
+            }
+            drawableList.removeIf { it.isFinish() }
+        }
 
         g.drawImage(canvas, 0, 0, this)
+
+        repaint()
     }
 }
