@@ -27,15 +27,12 @@ class Trochoid(rm: Int,
         val x0: Double = (Math.floor(Math.random()*(500-2*rc))+ rc)
         val y0: Double = (Math.floor(Math.random()*(500-2*rc))+ rc)
 
-        var ox: Double
-        var oy: Double
+        val ox = (x0 + rc - rm + rd)
+        val oy = y0
 
         val laps: Int = rm/gcd(rc, rm)
 
         val step = 5
-
-        ox = (x0 + rc - rm + rd)
-        oy = y0
 
         val g = trochoidImage.createGraphics()
 
@@ -46,22 +43,27 @@ class Trochoid(rm: Int,
         var i = 0.0
         var x: Double
         var y: Double
+
+        val a = arrayListOf(ox.toInt())
+        val b = arrayListOf(oy.toInt())
+
         while(true){
             val angle = Math.toRadians(i)
 
             x = x0 + (rc-rm)*Math.cos(angle) + rd*Math.cos(((rc-rm).toDouble()/rm)*angle)
             y = y0 + (rc-rm)*Math.sin(angle) - rd*Math.sin(((rc-rm).toDouble()/rm)*angle)
 
-            g.drawLine(ox.toInt(), oy.toInt(), x.toInt(), y.toInt())
+            a.add(x.toInt())
+            b.add(y.toInt())
 
-            ox = x
-            oy = y
             i += step
 
             if(i > laps*360){
                 break
             }
         }
+
+        g.drawPolyline(a.toIntArray(), b.toIntArray(), a.size)
     }
 
     override fun draw(g: Graphics2D) {
