@@ -19,7 +19,12 @@ class MainPanel: JPanel() {
         Thread {
             val stdIn = Scanner(System.`in`)
             while(true) {
-                val num = stdIn.nextInt()
+                val num: Int
+                try {
+                    num = stdIn.nextInt()
+                } catch(e: Exception) {
+                    continue
+                }
                 println(num)
 
                 synchronized(drawableList) {
