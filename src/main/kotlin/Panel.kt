@@ -6,16 +6,16 @@ import java.awt.image.BufferedImage
 import java.util.*
 import javax.swing.JPanel
 
-class MainPanel: JPanel() {
+class MainPanel(private val canvasWidth: Int, private val canvasHeight: Int): JPanel() {
 
-    private val canvas: BufferedImage = BufferedImage(500, 500, BufferedImage.TYPE_4BYTE_ABGR)
+    private val canvas: BufferedImage = BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_4BYTE_ABGR)
 
     private val drawableList = arrayListOf<Graph>()
 
     init{
         val g2 = canvas.createGraphics()
         g2.color = Color.BLACK
-        g2.fillRect(0, 0, 500, 500)
+        g2.fillRect(0, 0, canvasWidth, canvasHeight)
         Thread {
             val stdIn = Scanner(System.`in`)
             while(true) {
@@ -38,7 +38,7 @@ class MainPanel: JPanel() {
         super.paintComponent(g)
         val g2 = canvas.createGraphics()
         g2.color = Color.BLACK
-        g2.fillRect(0, 0, 500, 500)
+        g2.fillRect(0, 0, canvasWidth, canvasHeight)
 
         synchronized(drawableList) {
             for(drawable in drawableList) {
