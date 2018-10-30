@@ -24,8 +24,8 @@ class Trochoid(rm: Int,
     private val trochoidImage = BufferedImage(500, 500, BufferedImage.TYPE_4BYTE_ABGR)
 
     init {
-        val x0: Double = (Math.floor(Math.random()*(500-2*rc))+ rc)
-        val y0: Double = (Math.floor(Math.random()*(500-2*rc))+ rc)
+        val x0: Double = (500-2*rc+ rc).toDouble()
+        val y0: Double = (500-2*rc+ rc).toDouble()
 
         val ox = (x0 + rc - rm + rd)
         val oy = y0
