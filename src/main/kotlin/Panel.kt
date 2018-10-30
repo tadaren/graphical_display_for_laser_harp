@@ -28,7 +28,7 @@ class MainPanel: JPanel() {
                 println(num)
 
                 synchronized(drawableList) {
-                    drawableList.add(Trochoid(50, 190, 30, 0.1, 80, 0.1))
+                    drawableList.add(Trochoid(50, 190, 30, 0.1, 80, 0.01))
                 }
             }
         }.start()

@@ -7,6 +7,8 @@ import java.awt.Graphics2D
 import java.awt.RenderingHints
 import java.awt.image.BufferedImage
 
+const val IMAGE_SIZE = 500
+
 class Trochoid(rm: Int,
                rc: Int,
                rd: Int,
@@ -21,11 +23,11 @@ class Trochoid(rm: Int,
 
     private var time = 0
 
-    private val trochoidImage = BufferedImage(500, 500, BufferedImage.TYPE_4BYTE_ABGR)
+    private val trochoidImage = BufferedImage(IMAGE_SIZE, IMAGE_SIZE, BufferedImage.TYPE_4BYTE_ABGR)
 
     init {
-        val x0: Double = (500-2*rc+ rc).toDouble()
-        val y0: Double = (500-2*rc+ rc).toDouble()
+        val x0: Double = (IMAGE_SIZE/2).toDouble()
+        val y0: Double = (IMAGE_SIZE/2).toDouble()
 
         val ox = (x0 + rc - rm + rd)
         val oy = y0
@@ -68,7 +70,7 @@ class Trochoid(rm: Int,
 
     override fun draw(g: Graphics2D) {
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
-        g.drawImage(trochoidImage, (centerX-25*scale).toInt(), (centerY-25*scale).toInt(), (50*scale).toInt(), (50*scale).toInt(), null)
+        g.drawImage(trochoidImage, (centerX- IMAGE_SIZE/2*scale).toInt(), (centerY- IMAGE_SIZE/2*scale).toInt(), (IMAGE_SIZE*scale).toInt(), (IMAGE_SIZE*scale).toInt(), null)
     }
 
     override fun update() {
