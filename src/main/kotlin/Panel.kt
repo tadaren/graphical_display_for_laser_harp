@@ -42,22 +42,22 @@ class MainPanel(private val canvasWidth: Int, private val canvasHeight: Int): JP
                                         1 -> Color(
                                                 (Math.random()*10).toInt(),
                                                 (Math.random()*10).toInt(),
-                                                (Math.random()*256).toInt()
+                                                (Math.random()*128+128).toInt()
                                         )
                                         2 -> Color(
                                                 (Math.random()*10).toInt(),
-                                                (Math.random()*256).toInt(),
+                                                (Math.random()*128+128).toInt(),
                                                 (Math.random()*10).toInt()
                                         )
                                         3 -> Color(
-                                                (Math.random()*256).toInt(),
+                                                (Math.random()*128+128).toInt(),
                                                 (Math.random()*10).toInt(),
                                                 (Math.random()*10).toInt()
                                         )
                                         4 -> Color(
-                                                (Math.random()*125).toInt(),
-                                                (Math.random()*125).toInt(),
-                                                (Math.random()*125).toInt()
+                                                (Math.random()*125+100).toInt(),
+                                                (Math.random()*125+100).toInt(),
+                                                (Math.random()*125+100).toInt()
                                         )
                                         else -> {
                                             Color(1,1,1)
@@ -72,7 +72,7 @@ class MainPanel(private val canvasWidth: Int, private val canvasHeight: Int): JP
     override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
         val g2 = canvas.createGraphics()
-        g2.color = Color.BLACK
+        g2.color = Color(10, 10, 40)
         g2.fillRect(0, 0, canvasWidth, canvasHeight)
 
         synchronized(drawableList) {
