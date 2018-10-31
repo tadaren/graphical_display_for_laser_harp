@@ -30,9 +30,9 @@ class MainPanel(private val canvasWidth: Int, private val canvasHeight: Int): JP
                 synchronized(drawableList) {
                     drawableList.add(
                             Trochoid(
-                                    50,
-                                    190,
-                                    30,
+                                    (Math.random()*200).toInt(),
+                                    (Math.random()*200).toInt(),
+                                    (Math.random()*50+50).toInt(),
                                     0.1,
                                     80,
                                     0.01,
@@ -42,22 +42,26 @@ class MainPanel(private val canvasWidth: Int, private val canvasHeight: Int): JP
                                         1 -> Color(
                                                 (Math.random()*10).toInt(),
                                                 (Math.random()*10).toInt(),
-                                                (Math.random()*128+128).toInt()
+                                                (Math.random()*128+128).toInt(),
+                                                220
                                         )
                                         2 -> Color(
                                                 (Math.random()*10).toInt(),
                                                 (Math.random()*128+128).toInt(),
-                                                (Math.random()*10).toInt()
+                                                (Math.random()*10).toInt(),
+                                                220
                                         )
                                         3 -> Color(
                                                 (Math.random()*128+128).toInt(),
                                                 (Math.random()*10).toInt(),
-                                                (Math.random()*10).toInt()
+                                                (Math.random()*10).toInt(),
+                                                220
                                         )
                                         4 -> Color(
                                                 (Math.random()*125+100).toInt(),
                                                 (Math.random()*125+100).toInt(),
-                                                (Math.random()*125+100).toInt()
+                                                (Math.random()*125+100).toInt(),
+                                                220
                                         )
                                         else -> {
                                             Color(1,1,1)
