@@ -14,12 +14,12 @@ class Trochoid(rm: Int,
                rd: Int,
                minScale: Double,
                private val lifetime: Int,
-               private val scaleStep: Double): Graph() {
+               private val scaleStep: Double,
+               private val centerX: Int,
+               private val centerY: Int,
+               color: Color): Graph() {
 
     private var scale = minScale
-
-    private val centerX = Math.random()*100+50
-    private val centerY = Math.random()*100+50
 
     private var time = 0
 
@@ -39,7 +39,7 @@ class Trochoid(rm: Int,
         val g = trochoidImage.createGraphics()
 
         g.stroke = BasicStroke(2F)
-        g.color = Color.CYAN
+        g.color = color
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON)
 
         var i = 0.0

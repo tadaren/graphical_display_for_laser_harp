@@ -28,7 +28,42 @@ class MainPanel(private val canvasWidth: Int, private val canvasHeight: Int): JP
                 println(num)
 
                 synchronized(drawableList) {
-                    drawableList.add(Trochoid(50, 190, 30, 0.1, 80, 0.01))
+                    drawableList.add(
+                            Trochoid(
+                                    50,
+                                    190,
+                                    30,
+                                    0.1,
+                                    80,
+                                    0.01,
+                                    (Math.random()*(canvasWidth-400)+200).toInt(),
+                                    (Math.random()*(canvasHeight-400)+200).toInt(),
+                                    when(num){
+                                        1 -> Color(
+                                                (Math.random()*10).toInt(),
+                                                (Math.random()*10).toInt(),
+                                                (Math.random()*256).toInt()
+                                        )
+                                        2 -> Color(
+                                                (Math.random()*10).toInt(),
+                                                (Math.random()*256).toInt(),
+                                                (Math.random()*10).toInt()
+                                        )
+                                        3 -> Color(
+                                                (Math.random()*256).toInt(),
+                                                (Math.random()*10).toInt(),
+                                                (Math.random()*10).toInt()
+                                        )
+                                        4 -> Color(
+                                                (Math.random()*125).toInt(),
+                                                (Math.random()*125).toInt(),
+                                                (Math.random()*125).toInt()
+                                        )
+                                        else -> {
+                                            Color(1,1,1)
+                                        }
+                                    }
+                            ))
                 }
             }
         }.start()
