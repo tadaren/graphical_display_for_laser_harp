@@ -38,53 +38,55 @@ class MainPanel(canvasWidth: Int, canvasHeight: Int): JPanel() {
                 }
                 println(num)
 
-                synchronized(drawableList) {
-                    for(i in 0..4) {
-                        drawableList.add(
-                                Trochoid(
-                                        (Math.random() * 200).toInt(),
-                                        (Math.random() * 200).toInt(),
-                                        (Math.random() * 50 + 50).toInt(),
-                                        0.1,
-                                        80,
-                                        0.01,
-                                        (Math.random() * (canvas.width - 400) + 200).toInt(),
-                                        (Math.random() * (canvas.height - 400) + 200).toInt(),
-                                        when(num) {
-                                            1 -> Color(
-                                                    (Math.random() * 10).toInt(),
-                                                    (Math.random() * 10).toInt(),
-                                                    (Math.random() * 128 + 128).toInt(),
-                                                    220
-                                            )
-                                            2 -> Color(
-                                                    (Math.random() * 10).toInt(),
-                                                    (Math.random() * 128 + 128).toInt(),
-                                                    (Math.random() * 10).toInt(),
-                                                    220
-                                            )
-                                            3 -> Color(
-                                                    (Math.random() * 128 + 128).toInt(),
-                                                    (Math.random() * 10).toInt(),
-                                                    (Math.random() * 10).toInt(),
-                                                    220
-                                            )
-                                            4 -> Color(
-                                                    (Math.random() * 125 + 100).toInt(),
-                                                    (Math.random() * 125 + 100).toInt(),
-                                                    (Math.random() * 125 + 100).toInt(),
-                                                    220
-                                            )
-                                            else -> {
-                                                Color(1, 1, 1)
-                                            }
+                val bufferList = arrayListOf<Graph>()
+                for(i in 0..4) {
+                    bufferList.add(
+                            Trochoid(
+                                    (Math.random() * 200).toInt(),
+                                    (Math.random() * 200).toInt(),
+                                    (Math.random() * 50 + 50).toInt(),
+                                    0.1,
+                                    80,
+                                    0.01,
+                                    (Math.random() * (canvas.width - 400) + 200).toInt(),
+                                    (Math.random() * (canvas.height - 400) + 200).toInt(),
+                                    when(num) {
+                                        1 -> Color(
+                                                (Math.random() * 10).toInt(),
+                                                (Math.random() * 10).toInt(),
+                                                (Math.random() * 128 + 128).toInt(),
+                                                220
+                                        )
+                                        2 -> Color(
+                                                (Math.random() * 10).toInt(),
+                                                (Math.random() * 128 + 128).toInt(),
+                                                (Math.random() * 10).toInt(),
+                                                220
+                                        )
+                                        3 -> Color(
+                                                (Math.random() * 128 + 128).toInt(),
+                                                (Math.random() * 10).toInt(),
+                                                (Math.random() * 10).toInt(),
+                                                220
+                                        )
+                                        4 -> Color(
+                                                (Math.random() * 125 + 100).toInt(),
+                                                (Math.random() * 125 + 100).toInt(),
+                                                (Math.random() * 125 + 100).toInt(),
+                                                220
+                                        )
+                                        else -> {
+                                            Color(1, 1, 1)
                                         }
-                                ))
-                    }
+                                    }
+                            ))
+                }
+                synchronized(drawableList) {
+                    drawableList.addAll(bufferList)
                 }
             }
         }.start()
-        this.addComponentListener(object : ComponentAdapter(){
+        this.addComponentListener(object: ComponentAdapter() {
             override fun componentResized(e: ComponentEvent?) {
                 super.componentResized(e)
                 this@MainPanel.canvas = BufferedImage(this@MainPanel.width, this@MainPanel.height, BufferedImage.TYPE_4BYTE_ABGR)
