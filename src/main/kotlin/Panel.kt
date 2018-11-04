@@ -27,7 +27,7 @@ class MainPanel(canvasWidth: Int, canvasHeight: Int): JPanel() {
             server.bind(InetSocketAddress("127.0.0.1", 8000))
             while(true) {
                 val socket = server.accept()
-                println("waiting")
+//                println("waiting")
                 val stdIn = Scanner(socket.getInputStream())
                 val num: Int
                 try {
@@ -42,8 +42,8 @@ class MainPanel(canvasWidth: Int, canvasHeight: Int): JPanel() {
                 for(i in 0..4) {
                     bufferList.add(
                             Trochoid(
-                                    (Math.random() * 200).toInt(),
-                                    (Math.random() * 200).toInt(),
+                                    (Math.random() * 199 + 1).toInt(),
+                                    (Math.random() * 199 + 1).toInt(),
                                     (Math.random() * 50 + 50).toInt(),
                                     0.1,
                                     80,

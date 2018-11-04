@@ -9,19 +9,19 @@ import java.awt.image.BufferedImage
 
 const val IMAGE_SIZE = 500
 
-class Trochoid(rm: Int,
-               rc: Int,
-               rd: Int,
-               minScale: Double,
-               private val lifetime: Int,
-               private val scaleStep: Double,
-               private val centerX: Int,
-               private val centerY: Int,
-               color: Color): Graph() {
+open class Trochoid(rm: Int,
+                    rc: Int,
+                    rd: Int,
+                    minScale: Double,
+                    private val lifetime: Int,
+                    private val scaleStep: Double,
+                    private val centerX: Int,
+                    private val centerY: Int,
+                    color: Color): Graph() {
 
-    private var scale = minScale
+    protected var scale = minScale
 
-    private var time = 0
+    protected var time = 0
 
     private val trochoidImage = BufferedImage(IMAGE_SIZE, IMAGE_SIZE, BufferedImage.TYPE_4BYTE_ABGR)
 
